@@ -1,0 +1,210 @@
+/* Global Reset & Base Styles */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    margin: 0;
+    padding: 2rem;
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #222;
+  }
+  
+  input, select, textarea, button {
+    font-family: inherit;
+  }
+  
+  /* Form Styles */
+  form {
+    max-width: 400px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  form input,
+  form select,
+  form textarea {
+    padding: 0.6rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+  
+  form button {
+    padding: 0.6rem;
+    background-color: #007bff;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Error & Info Text */
+  p.error {
+    color: red;
+    text-align: center;
+  }
+  
+  p.info {
+    color: green;
+    text-align: center;
+  }
+  
+  /* Contest / Bookmark Cards */
+  .contest-card, .bookmark-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease;
+  }
+  
+  .contest-card:hover, .bookmark-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Buttons inside cards */
+  .contest-card button,
+  .bookmark-card button {
+    margin-top: 0.8rem;
+    padding: 0.5rem 1rem;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contest-card button:hover,
+  .bookmark-card button:hover {
+    background-color: #218838;
+  }
+  
+  /* Reminder Form inside Bookmark Cards */
+  .reminder-form {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .reminder-form label {
+    font-weight: 500;
+  }
+  
+  .reminder-form select,
+  .reminder-form input[type="number"] {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Notes Page */
+  #existing-note {
+    margin-top: 1rem;
+    text-align: center;
+    font-style: italic;
+  }
+  
+  /* Utility Classes */
+  .text-center {
+    text-align: center;
+  }
+  
+  button.secondary {
+    background-color: #dc3545;
+  }
+  
+  button.secondary:hover {
+    background-color: #bb2d3b;
+  }
+  
+  /* Mobile Responsive */
+  @media (max-width: 600px) {
+    body {
+      padding: 1rem;
+    }
+  
+    .contest-card, .bookmark-card {
+      padding: 1rem;
+    }
+  
+    form {
+      width: 100%;
+      padding: 0 1rem;
+    }
+  }
+  .bookmarks-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.bookmarks-left, .bookmarks-right {
+  flex: 1;
+}
+
+.bookmarks-left h3 {
+  margin-top: 1rem;
+}
+
+.bookmarks-right form {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+.bookmarks-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.bookmark-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.bookmark-column h3 {
+  margin-bottom: 1rem;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+}
+
