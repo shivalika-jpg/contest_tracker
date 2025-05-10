@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upcoming Contests</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h2>Upcoming Contests</h2>
+  <div id="contest-list"></div>
+
+  <a href="bookmark.html" class="bookmark-link">Go to Bookmarked Contests</a>
+
+  <script src="js/contests.js"></script>
+  <div id="reminder-modal" class="modal" style="display: none;">
+  <div class="modal-content">
+    <h3>Set Reminder</h3>
+    <form id="reminder-form">
+      <input type="hidden" id="reminder-contest-id">
+      <input type="hidden" id="reminder-name">
+      <input type="hidden" id="reminder-platform">
+      <input type="hidden" id="reminder-start-time">
+
+      <label>Reminder Method:</label>
+      <select id="reminder-method">
+        <option value="sms">SMS</option>
+      </select>
+
+      <label>Remind me before:</label>
+      <select id="reminder-time">
+        <option value="60">1 hour</option>
+        <option value="30">30 mins</option>
+        <option value="10">10 mins</option>
+      </select>
+
+      <button type="submit">Set Reminder</button>
+      <button type="button" onclick="closeReminderModal()">Cancel</button>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
