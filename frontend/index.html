@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contest Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="bookmark.html" class="nav-link">Bookmarks</a>
+                <a href="notes.html" class="nav-link">Notes</a>
+                <button id="logout-btn" class="nav-link btn btn-danger">Logout</button>
+            </div>
+        </nav>
+
+        <main>
+            <h1>Upcoming Contests</h1>
+            
+            <h2>Upcoming Contests</h2>
+            <div id="contest-list"></div>
+        </main>
+
+        <div class="text-center">
+            <a href="bookmark.html" class="btn btn-success">View Bookmarked Contests</a>
+        </div>
+
+        <!-- Reminder Modal -->
+        <div id="reminder-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h3>Set Reminder</h3>
+                <form id="reminder-form">
+                    <input type="hidden" id="reminder-contest-id">
+                    <input type="hidden" id="reminder-name">
+                    <input type="hidden" id="reminder-platform">
+                    <input type="hidden" id="reminder-start-time">
+
+                    <div class="form-group">
+                        <label>Reminder Method:</label>
+                        <select id="reminder-method" class="form-control">
+                            <option value="sms">SMS</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Remind me before:</label>
+                        <select id="reminder-time" class="form-control">
+                            <option value="60">1 hour</option>
+                            <option value="30">30 mins</option>
+                            <option value="10">10 mins</option>
+                        </select>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">Set Reminder</button>
+                        <button type="button" class="btn btn-secondary" onclick="closeReminderModal()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="contests.js"></script>
+</body>
+</html>
