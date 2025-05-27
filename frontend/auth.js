@@ -5,7 +5,8 @@ document.getElementById('login-form')?.addEventListener('submit', async (e) => {
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
 
-  const res = await fetch('http://localhost:5000/api/auth/login', {
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+  const res = await fetch(`${apiUrl}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
@@ -27,7 +28,7 @@ document.getElementById('register-form')?.addEventListener('submit', async (e) =
   const username = document.getElementById('register-username').value;
   const password = document.getElementById('register-password').value;
 
-  const res = await fetch('http://localhost:5000/api/auth/register', {
+  const res = await fetch(`${apiUrl}/api/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })

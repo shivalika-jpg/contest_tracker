@@ -5,7 +5,8 @@ if (!token) {
   window.location.href = 'login.html';
 }
 
-fetch('http://localhost:5000/api/contests/codeforces', {
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+fetch(`${apiUrl}/api/contests/codeforces`, {
   headers: {
     Authorization: `Bearer ${token}`
   }
@@ -53,7 +54,7 @@ ${!isPast ? `
   });
 
 function bookmarkContest(contestId, name, platform, startTime, duration) {
-  fetch('http://localhost:5000/api/bookmarks', {
+  fetch(`${apiUrl}/api/bookmarks`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -89,7 +90,7 @@ const logoutBtn = document.getElementById('logout-btn');
 if (logoutBtn) {
     logoutBtn.addEventListener('click', async () => {
         try {
-            const response = await fetch('http://localhost:5000/api/auth/logout', {
+            const response = await fetch(`${apiUrl}/api/auth/logout`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -125,7 +126,7 @@ document.getElementById('reminder-form').addEventListener('submit', async (e) =>
   };
 
   try {
-    const res = await fetch('http://localhost:5000/api/reminders', {
+    const res = await fetch(`${apiUrl}/api/reminders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

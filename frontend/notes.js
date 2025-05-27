@@ -19,7 +19,8 @@ form.addEventListener('submit', async (e) => {
     notes: noteInput.value
   };
 
-  const res = await fetch('http://localhost:5000/api/contest-log', {
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+  const res = await fetch(`${apiUrl}/api/contest-log`, {
     method: 'POST',
     headers: {
       'Authorization': `Bearer ${token}`,
@@ -44,7 +45,7 @@ document.getElementById('fetch-note-btn').addEventListener('click', async () => 
     return;
   }
 
-  const res = await fetch(`http://localhost:5000/api/contest-log/${contestId}`, {
+  const res = await fetch(`${apiUrl}/api/contest-log/${contestId}`, {
     headers: {
       'Authorization': `Bearer ${token}`
     }

@@ -8,7 +8,8 @@ const now = new Date();
 const upcomingContainer = document.getElementById('upcoming-bookmarks');
 const pastContainer = document.getElementById('past-bookmarks');
 
-fetch('http://localhost:5000/api/bookmarks', {
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+fetch(`${apiUrl}/api/bookmarks`, {
   headers: {
     'Authorization': `Bearer ${token}`
   }
@@ -46,7 +47,7 @@ fetch('http://localhost:5000/api/bookmarks', {
   });
 
 function removeBookmark(contestId) {
-  fetch(`http://localhost:5000/api/bookmarks/${contestId}`, {
+  fetch(`${apiUrl}/api/bookmarks/${contestId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`
