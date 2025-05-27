@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+     <script>
+        const token = localStorage.getItem('authToken');
+        if (!token) {
+            window.location.href = 'register.html';
+        }
+    </script>
     <div class="container">
         <nav class="navbar">
             <div class="nav-links">
