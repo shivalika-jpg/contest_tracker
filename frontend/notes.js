@@ -5,7 +5,7 @@ if (!token) {
 }
 
 // Define apiUrl globally at the top of the file
-const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
 
 const form = document.getElementById('note-form');
 const contestIdInput = document.getElementById('contestId');
@@ -21,7 +21,7 @@ form.addEventListener('submit', async (e) => {
     problemsSolved: solvedInput.value,
     notes: noteInput.value
   };
-const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+
   const res = await fetch(`${apiUrl}/api/contest-log`, {
     method: 'POST',
     headers: {
