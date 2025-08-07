@@ -1,5 +1,5 @@
 // frontend/js/auth.js
-
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
 // LOGIN
 document.getElementById('login-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
