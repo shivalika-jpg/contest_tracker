@@ -5,7 +5,11 @@ if (!token) {
   window.location.href = 'login.html';
 }
 
+<<<<<<< HEAD
 const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+=======
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+>>>>>>> 1b93c6e (WIP: pre-rebase commit (cleaned, removed .env))
 fetch(`${apiUrl}/api/contests/codeforces`, {
   headers: {
     Authorization: `Bearer ${token}`

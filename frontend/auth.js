@@ -1,11 +1,17 @@
 // frontend/js/auth.js
+// Define apiUrl globally at the top of the file
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+
 // LOGIN
 document.getElementById('login-form')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const username = document.getElementById('login-username').value;
   const password = document.getElementById('login-password').value;
+<<<<<<< HEAD
 
 const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
+=======
+>>>>>>> 1b93c6e (WIP: pre-rebase commit (cleaned, removed .env))
   const res = await fetch(`${apiUrl}/api/auth/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },

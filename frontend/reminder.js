@@ -1,3 +1,6 @@
+// Define apiUrl globally at the top of the file
+const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
+
 document.addEventListener('DOMContentLoaded', async () => {
     const reminderList = document.getElementById('reminder-list');
     const token = localStorage.getItem('token'); // Get the user's token from localStorage
@@ -9,16 +12,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     // Fetch reminders for the authenticated user
-    const response = await apiCall('/reminders', 'GET', null, token);
-
-    if (response.success) {
-        const reminders = response.reminders;
-        reminders.forEach(reminder => {
-            const reminderItem = document.createElement('li');
-            reminderItem.textContent = `${reminder.name} - ${reminder.date}`;
-            reminderList.appendChild(reminderItem);
+    try {
+        const response = await fetch(`${apiUrl}/api/reminders`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
         });
-    } else {
-        reminderList.innerHTML = "<li>No reminders found.</li>";
+        
+        if (response.ok) {
+            const reminders = await response.json();
+            if (reminders.length > 0) {
+                reminders.forEach(reminder => {
+                    const reminderItem = document.createElement('li');
+                    reminderItem.textContent = `${reminder.name} - ${reminder.startTime}`;
+                    reminderList.appendChild(reminderItem);
+                });
+            } else {
+                reminderList.innerHTML = "<li>No reminders found.</li>";
+            }
+        } else {
+            reminderList.innerHTML = "<li>Error loading reminders.</li>";
+        }
+    } catch (error) {
+        console.error('Error fetching reminders:', error);
+        reminderList.innerHTML = "<li>Error loading reminders.</li>";
     }
 });
