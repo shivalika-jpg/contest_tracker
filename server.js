@@ -14,17 +14,8 @@ console.log(typeof authRoutes);
 const contestRoutes = require('./backend/routes/contestRoutes');
 const contestLogRoutes = require('./backend/routes/contestLogRoutes');
 
-// CORS configuration for production
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://contest-tracker-3dov.vercel.app', 'https://contest-tracker-qhfl.onrender.com'] // Your actual deployment URLs
-    : ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5500', 'http://localhost:5001'], // Local development
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-};
-
-app.use(cors(corsOptions));
+// Simple CORS configuration - allow all origins
+app.use(cors());
 app.use(express.json());
 
 // API Routing
