@@ -4,8 +4,9 @@
   "description": "A contest tracking application",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "dev": "node server.js",
+    "build": "echo 'Backend build complete'"
   },
   "engines": {
     "node": "18.x"

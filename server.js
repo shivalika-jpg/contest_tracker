@@ -14,13 +14,20 @@ console.log(typeof authRoutes);
 const contestRoutes = require('./backend/routes/contestRoutes');
 const contestLogRoutes = require('./backend/routes/contestLogRoutes');
 
-app.use(cors());
+// CORS configuration for production
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://contest-tracker-3dov.vercel.app', 'https://contest-tracker-qhfl.onrender.com'] // Your actual deployment URLs
+    : ['http://localhost:3000', 'http://localhost:5000', 'http://127.0.0.1:5500', 'http://localhost:5001'], // Local development
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
-// Serve static files from frontend directory
-app.use(express.static(path.join(__dirname, 'frontend')));
-
-// Routing
+// API Routing
 app.use('/api/auth', authRoutes);      // ✅ Make sure this is a Router, not {}
 app.use('/api/contests', require('./backend/routes/contestRoutes'));
 app.use('/api/contest-log', contestLogRoutes);
@@ -30,19 +37,18 @@ const reminderRoutes = require('./backend/routes/reminderRoutes');
 console.log('🧪 /api/reminders is of type:', typeof reminderRoutes);
 app.use('/api/reminders', reminderRoutes);
 
-// Handle root route
+// API health check endpoint
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
+  res.json({ 
+    message: 'Contest Tracker API is running!', 
+    status: 'healthy',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// Handle any other routes to serve frontend files
-app.get('*', (req, res) => {
-  // If the request doesn't start with /api, serve the frontend file
-  if (!req.path.startsWith('/api')) {
-    res.sendFile(path.join(__dirname, 'frontend', req.path));
-  } else {
-    res.status(404).json({ message: 'API endpoint not found' });
-  }
+// Handle API 404s
+app.use('*', (req, res) => {
+  res.status(404).json({ message: 'API endpoint not found' });
 });
 
 // Connect to MongoDB
