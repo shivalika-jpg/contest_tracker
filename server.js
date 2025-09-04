@@ -45,17 +45,26 @@ app.get('*', (req, res) => {
   }
 });
 
-// Connect to MongoDB and start server
+// Connect to MongoDB
 console.log("Loaded MONGO_URI:", process.env.MONGO_URI);
 
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-  console.log('✅ Connected to MongoDB');
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('✅ Connected to MongoDB');
+  })
+  .catch((err) => {
+    console.error('❌ DB connection failed:', err);
+  });
+}
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
   const PORT = process.env.PORT || 5001;
   app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-})
-.catch((err) => {
-  console.error('❌ DB connection failed:', err);
-});
+}
+
+// Export for Vercel
+module.exports = app;
 
 
