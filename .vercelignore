@@ -1,0 +1,19 @@
+# Backend files (not needed for frontend deployment)
+backend/
+server.js
+.env
+node_modules/
+package.json
+package-lock.json
+
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# Build scripts
+build-frontend.js
+test-api.js
+
+# Documentation
+DEPLOYMENT.md
+README.md

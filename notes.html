@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contest Notes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2>Contest Notes</h2>
+
+  <!-- Form to save/update notes -->
+  <form id="note-form">
+    <input type="text" id="contestId" placeholder="Contest ID" required><br>
+    <input type="number" id="solved" placeholder="Problems solved"><br>
+    <textarea id="note" placeholder="Your note..."></textarea><br>
+    <button type="submit">Save Note</button>
+  </form>
+
+  <!-- Section to fetch existing notes -->
+  <div>
+    <h3>Fetch Existing Notes</h3>
+    <input type="text" id="fetch-contest-id" placeholder="Enter Contest ID to fetch note" required><br>
+    <button id="fetch-note-btn">Fetch Note</button> 
+  </div>
+
+  <div id="existing-note"></div>
+
+  <script src="config.js"></script>
+  <script src="notes.js"></script>
+</body>
+</html>

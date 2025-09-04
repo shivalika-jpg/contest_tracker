@@ -25,8 +25,8 @@
    TWILIO_PHONE=your_twilio_phone
    ```
 
-5. **Note your Render URL**: After deployment, you'll get a URL like:
-   `https://your-app-name.onrender.com`
+5. **Your Render URL**: 
+   `https://contest-tracker-qhfl.onrender.com`
 
 ## Frontend Deployment (Vercel)
 
@@ -46,6 +46,9 @@
      - Build Command: (leave empty)
      - Output Directory: `frontend`
      - Install Command: (leave empty)
+
+4. **Your Vercel URL**:
+   `https://contest-tracker-3dov.vercel.app/`
 
 ## Local Development
 
