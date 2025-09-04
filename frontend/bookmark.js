@@ -8,12 +8,7 @@ const now = new Date();
 const upcomingContainer = document.getElementById('upcoming-bookmarks');
 const pastContainer = document.getElementById('past-bookmarks');
 
-<<<<<<< HEAD
-const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : 'https://contest-tracker-qhfl.onrender.com';
-=======
-const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
->>>>>>> 1b93c6e (WIP: pre-rebase commit (cleaned, removed .env))
-fetch(`${apiUrl}/api/bookmarks`, {
+fetch(`${window.config.apiUrl}/api/bookmarks`, {
   headers: {
     'Authorization': `Bearer ${token}`
   }
@@ -51,7 +46,7 @@ fetch(`${apiUrl}/api/bookmarks`, {
   });
 
 function removeBookmark(contestId) {
-  fetch(`${apiUrl}/api/bookmarks/${contestId}`, {
+  fetch(`${window.config.apiUrl}/api/bookmarks/${contestId}`, {
     method: 'DELETE',
     headers: {
       'Authorization': `Bearer ${token}`

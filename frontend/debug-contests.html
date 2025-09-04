@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Contests</title>
+</head>
+<body>
+    <h1>Debug Contests API</h1>
+    <div id="debug-output"></div>
+    <script src="config.js"></script>
+    <script>
+        async function debugContests() {
+            const token = localStorage.getItem('token');
+            console.log('Token:', token ? 'Found' : 'Not found');
+            
+            if (!token) {
+                document.getElementById('debug-output').innerHTML = '<p>No token found. Please login first.</p>';
+                return;
+            }
+
+            try {
+                console.log('Fetching from:', `${window.config.apiUrl}/api/contests/codeforces`);
+                
+                const res = await fetch(`${window.config.apiUrl}/api/contests/codeforces`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+
+                console.log('Response status:', res.status);
+                
+                if (!res.ok) {
+                    throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                }
+
+                const contests = await res.json();
+                console.log('Raw contests data:', contests);
+                
+                const now = new Date();
+                console.log('Current time:', now);
+
+                let debugHtml = `<h3>Debug Info:</h3>
+                <p>Current time: ${now.toLocaleString()}</p>
+                <p>Total contests: ${contests.length}</p>
+                <h3>Contest Details:</h3>`;
+
+                contests.forEach((contest, index) => {
+                    const startTime = new Date(contest.startTime);
+                    const isPast = startTime < now;
+                    const isUpcoming = startTime > now;
+                    
+                    debugHtml += `
+                    <div style="border: 1px solid #ccc; margin: 10px; padding: 10px;">
+                        <h4>${contest.name}</h4>
+                        <p>Start Time: ${contest.startTime}</p>
+                        <p>Parsed Start Time: ${startTime.toLocaleString()}</p>
+                        <p>Is Past: ${isPast}</p>
+                        <p>Is Upcoming: ${isUpcoming}</p>
+                        <p>Time difference: ${(startTime - now) / (1000 * 60 * 60)} hours</p>
+                    </div>`;
+                });
+
+                document.getElementById('debug-output').innerHTML = debugHtml;
+                
+            } catch (err) {
+                console.error('Debug error:', err);
+                document.getElementById('debug-output').innerHTML = `<p>Error: ${err.message}</p>`;
+            }
+        }
+
+        // Wait for DOM and config to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            if (window.config && window.config.apiUrl) {
+                debugContests();
+            } else {
+                document.getElementById('debug-output').innerHTML = '<p>Config not loaded</p>';
+            }
+        });
+    </script>
+</body>
+</html>

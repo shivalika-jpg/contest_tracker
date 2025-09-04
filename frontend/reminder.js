@@ -1,5 +1,3 @@
-// Define apiUrl globally at the top of the file
-const apiUrl = window.location.hostname === 'localhost' ? 'http://localhost:5000' : window.location.origin;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const reminderList = document.getElementById('reminder-list');
@@ -13,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Fetch reminders for the authenticated user
     try {
-        const response = await fetch(`${apiUrl}/api/reminders`, {
+        const response = await fetch(`${window.config.apiUrl}/api/reminders`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`
